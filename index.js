@@ -13,13 +13,18 @@ const __dirname = dirname(__filename);
 
 dotenv.config();
 const app = express();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 10000;
 
 // connect to MongoDB
 connectDB();
 
 // Middleware
-app.use(cors());
+app.use(
+    cors({
+        origin: 'https://scosut.github.io',
+        credentials: true,
+    }),
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api/dancers', dancerRouter);
